@@ -103,7 +103,7 @@ $unfetched = getAllAbsence($_SESSION['user_id']);
                 </tr>
             </thead>
             <tbody id="tbodymyabsence">
-                <?php if (!$unfetched) : ?>
+                <?php if (!$unfetched->num_rows) : ?>
                     <tr class="shrink-row">
                         <td colspan="8">You've not make any absence yet!</td>
                     </tr>

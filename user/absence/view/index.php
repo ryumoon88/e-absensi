@@ -11,7 +11,7 @@ if (isset($_GET['logout'])) {
 if (!isset($_SESSION['is_login'])) {
     header('Location: ../../../');
 }
-
+if (!isset($_GET['id'])) header('Location: ../../dashboard');
 $absence = getAbsence($_GET['id']);
 if (!$absence) header('Location: ../../dashboard');
 $enroll = isUserEnrolled($absence['absensi_id'], $_SESSION['user_id']);
@@ -90,7 +90,7 @@ if (isset($_GET['take'])) {
             <div class="sidenav-links">
                 <a href="../../dashboard/" class="btn text-white w-100 text-start"><i class="bi bi-house-door-fill me-3"></i>Dashboard</a>
                 <a href="../active/" class="btn mt-2 active text-white w-100 text-start"><i class="bi bi-activity me-3"></i>Active Absence</a>
-                <a href="./" class="btn mt-2 text-white w-100 text-start"><i class="bi bi-plus-lg me-3"></i>New Absence</a>
+                <a href="../new/" class="btn mt-2 text-white w-100 text-start"><i class="bi bi-plus-lg me-3"></i>New Absence</a>
                 <a href="../myabsence/" class="btn mt-2 text-white w-100 text-start"><i class="bi bi-menu-button-wide me-3"></i>My Absence</a>
             </div>
         </div>
@@ -153,7 +153,7 @@ if (isset($_GET['take'])) {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel"><?= $msg['title']; ?></h5>
-                        <a href="?id=<?= $absence_id; ?>" class="btn-close" aria-label="Close"></a>
+                        <a href="?id=<?= $absence['absensi_id']; ?>" class="btn-close" aria-label="Close"></a>
                     </div>
                     <div class="modal-body text-center">
                         <div class="icon">
