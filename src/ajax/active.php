@@ -11,7 +11,7 @@ $keyword = $_GET['q'];
 
 $query = mysqli_prepare($conn, "SELECT absensi_id, absensi_title, absensi_desc, absensi_status, getFullName(absensi_owner) absensi_owner, expired_at FROM absensienroll ae JOIN absensilist al
 USING(absensi_id) WHERE (al.absensi_owner != ? AND al.absensi_status = 'Opened' AND ae.user_id = ?)
-AND (al.absensi_title LIKE '%$keyword%' OR al.absensi_desc LIKE '%$keyword%' OR al.absensi_owner LIKE '%$keyword%' OR DATE_FORMAT(al.expired_at, '%a, %d %b %Y %H:%i') LIKE '%$keyword%')");
+AND (al.absensi_title LIKE '%$keyword%' OR al.absensi_desc LIKE '%$keyword%' OR al.absensi_owner LIKE '%$keyword%' OR DATE_FORMAT(al.expired_at, '%a, %d %b %Y %H:%i') LIKE '%$keyword%' OR absensi_status LIKE '%$keyword%' OR absensi_owner LIKE '%$keyword%')");
 mysqli_stmt_bind_param($query, 'ii', $_SESSION['user_id'], $_SESSION['user_id']);
 mysqli_stmt_execute($query);
 $unfetched = mysqli_stmt_get_result($query);

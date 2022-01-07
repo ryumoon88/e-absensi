@@ -12,7 +12,7 @@ $keyword = $_GET['q'];
 
 $query = mysqli_prepare($conn, "SELECT * FROM absensilist WHERE (absensi_owner = ?) AND (absensi_id LIKE '%$keyword%' OR absensi_title LIKE '%$keyword%'
 OR absensi_desc LIKE '%$keyword%' OR absensi_status LIKE '%$keyword%' OR DATE_FORMAT(created_at, '%a, %d %b %Y %H:%i') LIKE '%$keyword%'
-OR DATE_FORMAT(opened_at, '%a, %d %b %Y %H:%i') LIKE '%$keyword%' OR expired_at LIKE '%$keyword%')");
+OR DATE_FORMAT(opened_at, '%a, %d %b %Y %H:%i') LIKE '%$keyword%' OR DATE_FORMAT(expired_at, '%a, %d %b %Y %H:%i') LIKE '%$keyword%')");
 mysqli_stmt_bind_param($query, 'i', $_SESSION['user_id']);
 mysqli_stmt_execute($query);
 $unfetched = mysqli_stmt_get_result($query);

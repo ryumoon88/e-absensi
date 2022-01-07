@@ -56,7 +56,7 @@ if (isset($_GET['take'])) {
                     </div>
                     <div class="d-flex justify-content-center col-4">
                         <div class="my-auto text-center fw-bold">
-                            Absence
+                            Absence <span class="badge bg-<?= ($absence['absensi_status'] == 'Closed') ? 'danger' : (($absence['absensi_status'] == 'Opened') ? 'success' : 'warning'); ?>">ID: <?= $_GET['id']; ?></span>
                         </div>
                     </div>
                     <div class="col-4 p-0">
